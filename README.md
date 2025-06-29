@@ -26,13 +26,15 @@ A smart AI-powered chatbot designed to answer medical-related questions using Re
 - **dotenv** for environment configuration
 
 ---
-#.env file
+# .env file
+
 PINECONE_API_KEY=your-pinecone-api-key
 PINECONE_ENV=your-pinecone-environment
 GOOGLE_API_KEY=your-gemini-api-key
 
-#Running
-Run store_index.py after loading the pdf documents, ensureyou have the indexer from PINECONE file then app.py,
+# Running
+Run store_index.py after loading the pdf documents, ensure you have the indexer from PINECONE file then run app.py,
+
 The project should run on localhost port 8080
 
 
