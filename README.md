@@ -1,6 +1,6 @@
 # 🩺 Medical Chatbot
 
-A smart AI-powered chatbot designed to answer medical-related questions using Retrieval-Augmented Generation (RAG). It combines the power of LLMs (like OpenAI or Gemini) with vector-based document search to provide accurate, context-aware answers from trusted medical sources.
+A smart AI-powered chatbot designed to answer medical-related questions using Retrieval-Augmented Generation (RAG). It combines the power of LLMs ( Gemini) with vector-based document search to provide accurate, context-aware answers from trusted medical sources.
 
 ---
 
