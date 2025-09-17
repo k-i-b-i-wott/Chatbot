@@ -17,7 +17,7 @@ embeddings= download_hugging_face_embeddings()
 
 pc = pinecone(api_key=PINECONE_API_KEY)
 
-index_name = "DentaLink"
+index_name = "dentaink-123"
 
 pc.create_index(
         name=index_name,

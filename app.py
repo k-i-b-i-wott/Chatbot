@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 CORS(app, 
      origins=[
-         "http://localhost:5173", 
+         "http://localhost:5174", 
          "http://127.0.0.1:5173",  
          "http://192.168.100.4:5173",  
          "*" 
@@ -36,7 +36,7 @@ os.environ["GOOGLE_AI_KEY"] = GOOGLE_AI_KEY
 
 embeddings = download_hugging_face_embeddings()
 
-index_name = "medbot"
+index_name = "dentaink-123"
 
 docsearch = PineconeVectorStore.from_existing_index(   
     index_name=index_name,

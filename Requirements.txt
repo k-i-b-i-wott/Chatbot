@@ -7,7 +7,10 @@ python-dotenv
 pinecone[grpc]
 langchain-pinecone
 langchain_community
-langchain_openai
+langchain-google-genai
 langchain_experimental
+huggingface_hub<0.20.0
+sentence-transformers
+langchain-huggingface
 
 -e .
