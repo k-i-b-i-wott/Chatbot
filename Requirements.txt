@@ -1,4 +1,4 @@
-sentence-transformers===2.2.2
+sentence-transformers
 langchain
 flask
 flask-cors
@@ -9,7 +9,7 @@ langchain-pinecone
 langchain_community
 langchain-google-genai
 langchain_experimental
-huggingface_hub<0.20.0
+huggingface_hub
 sentence-transformers
 langchain-huggingface
 
