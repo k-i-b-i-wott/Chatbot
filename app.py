@@ -17,8 +17,7 @@ CORS(app,
      origins=[
          "http://localhost:5174", 
          "http://127.0.0.1:5173",  
-         "http://192.168.100.4:5173",  
-         "*" 
+         "http://192.168.100.4:5173",          
      ], 
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
      allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
@@ -50,13 +49,17 @@ llm = ChatGoogleGenerativeAI(
     google_api_key=GOOGLE_AI_KEY  
 )
 
-retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3})
+retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 system_prompt = (
     "You are a dental assistant AI specialized in answering oral health and dentistry questions. "
-    "Use the following pieces of retrieved context to answer the question. "
+    "Use the following pieces of retrieved context to answer the question when applicable. "
     "If you don't know the answer based on the context, say that you don't know. "
     "Your answer must be a maximum of three sentences and be concise. "
-    "**CRITICAL INSTRUCTION: When a question is about a dental condition or problem, your answer must first state the best general treatment or management advice for that condition based on the provided context. You must then always conclude by strongly recommending they visit a dentist for a definitive diagnosis and personalized treatment.**"
+    "**CRITICAL INSTRUCTIONS: "
+    "1. When a question is about a dental condition or problem, your answer must first state the best general treatment or management advice based on the provided context, then conclude by strongly recommending they visit a dentist for definitive diagnosis and personalized treatment. "
+    "2. For greetings (hello, hi, etc.), respond warmly and invite oral health questions. "
+    "3. For acknowledgments (okay, thanks, etc.), respond politely and encourage further questions. "
+    "4. For positive feedback about solutions, acknowledge appreciation and reinforce dental visit importance.**"
     "\n\n"
     "{context}"
 )
