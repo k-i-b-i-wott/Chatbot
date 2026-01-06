@@ -13,7 +13,7 @@
             <div class="header-content">
                 <i class="fas fa-user-md"></i>
                 <h1>Medical Assistant</h1>
-                <p>Ask me anything about medical topics</p>
+                <p>Ask me anything about Dental topics</p>
             </div>
         </div>
         
@@ -107,11 +107,14 @@
                 if (response.ok) {
                     addMessage(data.response, true);
                 } else {
-                    addMessage('Sorry, I encountered an error. Please try again.', true);
+                    // Show the actual error message for debugging
+                    const errorMsg = data.error || data.details || 'Sorry, I encountered an error. Please try again.';
+                    console.error('Server error:', data);
+                    addMessage(`Error: ${errorMsg}`, true);
                 }
             } catch (error) {
                 console.error('Error:', error);
-                addMessage('Sorry, I encountered an error. Please try again.', true);
+                addMessage(`Sorry, I encountered an error: ${error.message}. Please check the console for details.`, true);
             } finally {
                 setLoading(false);
             }

@@ -1,16 +1,11 @@
-sentence-transformers
-langchain
 flask
 flask-cors
-pypdf
 python-dotenv
-pinecone[grpc]
-langchain-pinecone
-langchain_community
+langchain
 langchain-google-genai
-langchain_experimental
-huggingface_hub
+pinecone-client
+langchain-pinecone
 sentence-transformers
-langchain-huggingface
+langchain-community
 
 -e .
