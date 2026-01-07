@@ -11,9 +11,17 @@
     <div class="chat-container">
         <div class="chat-header">
             <div class="header-content">
-                <i class="fas fa-user-md"></i>
-                <h1>Medical Assistant</h1>
-                <p>Ask me anything about Dental topics</p>
+                <div class="header-main">
+                    <i class="fas fa-user-md"></i>
+                    <div class="header-text">
+                        <h1>Medical Assistant</h1>
+                        <p>Ask me anything about Dental topics</p>
+                    </div>
+                </div>
+                <button id="clearButton" class="header-clear-button" type="button">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Clear chat</span>
+                </button>
             </div>
         </div>
         
@@ -43,6 +51,7 @@
         const messageInput = document.getElementById('messageInput');
         const chatMessages = document.getElementById('chatMessages');
         const sendButton = document.getElementById('sendButton');
+        const clearButton = document.getElementById('clearButton');
 
         function addMessage(content, isBot = false) {
             const messageDiv = document.createElement('div');
@@ -77,6 +86,16 @@
                 sendButton.innerHTML = '<i class="fas fa-paper-plane"></i>';
             }
         }
+
+        function clearChat() {
+            chatMessages.innerHTML = '';
+            addMessage("Hello! I'm your medical assistant. How can I help you today?", true);
+        }
+
+        clearButton.addEventListener('click', () => {
+            clearChat();
+            messageInput.focus();
+        });
 
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();

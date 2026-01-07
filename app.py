@@ -54,7 +54,7 @@ load_dotenv()
 PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY')
 OPEN_AI_KEY = os.environ.get('OPEN_AI_KEY')
 GOOGLE_AI_KEY = os.environ.get('GOOGLE_AI_KEY')
-# Allow overriding the Gemini model via environment; pick a safe default.
+
 GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-1.5-pro')
 
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
@@ -70,17 +70,17 @@ docsearch = Pinecone.from_existing_index(
     embedding=embeddings
 )
 
-# Function to find a working Gemini model
+
 def get_working_gemini_model(api_key):
     """Try to find a working Gemini model by testing common model names."""
-    # Configure genai
+   
     genai.configure(api_key=api_key)
     
-    # List of model names to try (in order of preference)
+   
     model_names_to_try = [
-        "gemini-pro",  # Original model name
-        "models/gemini-pro",  # With models/ prefix
-        "gemini-1.0-pro",  # Versioned
+        "gemini-pro",  
+        "models/gemini-pro",  
+        "gemini-1.0-pro",  
         "models/gemini-1.0-pro",
         "gemini-1.5-flash",
         "models/gemini-1.5-flash",
@@ -92,7 +92,7 @@ def get_working_gemini_model(api_key):
     
     print("Attempting to find a working Gemini model...")
     
-    # First, try to list available models
+    
     try:
         print("Listing available models...")
         available_models = []
@@ -103,7 +103,7 @@ def get_working_gemini_model(api_key):
                 print(f"  Found: {model_name}")
         
         if available_models:
-            # Try the first available model
+           
             working_model = available_models[0]
             print(f"Using model: {working_model}")
             return working_model
@@ -111,30 +111,30 @@ def get_working_gemini_model(api_key):
         print(f"Could not list models: {e}")
         print("Trying common model names...")
     
-    # If listing failed, try common model names
+    
     for model_name in model_names_to_try:
         try:
             print(f"Testing model: {model_name}")
-            # Try to create a model instance
+         
             test_model = genai.GenerativeModel(model_name)
-            # Make a minimal test call with very short output
+          
             response = test_model.generate_content(
                 "Hi", 
                 generation_config={"max_output_tokens": 1}
             )
-            print(f"✓ Successfully connected to model: {model_name}")
-            # Return without models/ prefix if it was there
+            print(f" Successfully connected to model: {model_name}")
+            
             return model_name.replace('models/', '')
         except Exception as e:
             error_msg = str(e)
-            # Don't print full error if it's just a 404
+            
             if "404" in error_msg:
                 print(f"  ✗ Model not found")
             else:
                 print(f"  ✗ Failed: {error_msg[:80]}")
             continue
     
-    # If all else fails, return the default
+    
     print(f"Warning: Could not find a working model, using default: {GEMINI_MODEL}")
     return GEMINI_MODEL
 
